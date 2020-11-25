@@ -1,12 +1,12 @@
 import React from 'react';
 import {Advertisment, AdvertismentTitle, AdvertismentText, ShowMoreBtn, MostPopular, MostPopularTitle, Cards, Slider, Dots, HomePage} from './Home.styled'
-import {ReactComponent as Line } from "./../../icons/line.svg";
-import {ReactComponent as LeftBtn } from "./../../icons/LeftBtn.svg";
-import {ReactComponent as RightBtn } from "./../../icons/RightBtn.svg";
-import {ReactComponent as ActiveDot } from "./../../icons/ActiveDot.svg";
-import {ReactComponent as Dot } from "./../../icons/Dot.svg";
-import redShoes from "./../../icons/redShoes.png";
-import pinkShoes from "./../../icons/pinkShoes.png";
+import {ReactComponent as Line } from "./../../icons/most-popular/line.svg";
+import {ReactComponent as LeftBtn } from "./../../icons/most-popular/slider/LeftBtn.svg";
+import {ReactComponent as RightBtn } from "./../../icons/most-popular/slider/RightBtn.svg";
+import {ReactComponent as ActiveDot } from "./../../icons/most-popular/slider/ActiveDot.svg";
+import {ReactComponent as Dot } from "./../../icons/most-popular/slider/Dot.svg";
+import redShoes from "./../../icons/most-popular/cards/redShoes.png";
+import pinkShoes from "./../../icons/most-popular/cards/pinkShoes.png";
 import CardItem from './../../components/CardItem/CardsItem'
 
 const data = [

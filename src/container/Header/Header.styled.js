@@ -9,7 +9,7 @@ export const HeaderOuter = styled.div`
     top: 0;
     left: 0;
     right: 0;
-    margin-bottom:0;
+    margin-bottom: 0;
 `;
 
 export const Head = styled.div`

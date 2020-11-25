@@ -8,6 +8,7 @@ export const NavList = styled.li`
     list-style: none;
     cursor: pointer;
     font-size: 24px;
+    padding-bottom: 8px;
     a{
          text-decoration: none; color: #FFFFFF;
     }

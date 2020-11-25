@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyledFooter, StyledLogoName, StyledNetwoks, NetworkLogo, StyledRights } from './Footer.styled';
-import {ReactComponent as LogoName } from "./../../icons/logo-name.svg";
-import {ReactComponent as Rights } from "./../../icons/rights.svg";
-import insta from "./../../icons/insta.png"
-import facebook from "./../../icons/facebook.png"
-import pinterest from "./../../icons/pinterest.png"
-
+import {ReactComponent as LogoName } from "./../../icons/footer/logo-name.svg";
+import {ReactComponent as Rights } from "./../../icons/footer/rights.svg";
+import insta from "./../../icons/footer/insta.png"
+import facebook from "./../../icons/footer/facebook.png"
+import pinterest from "./../../icons/footer/pinterest.png"
 
 const Footer = () => { 
     return(

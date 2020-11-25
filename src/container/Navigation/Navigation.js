@@ -2,6 +2,7 @@ import React from 'react';
 import { NavList, NavUl, Navigat } from './Navigation.styled';
 import {Switch, BrowserRouter as Router, Route, NavLink} from "react-router-dom";
 import Home from "../Home/Home";
+import Catalog from '../Catalog/Catalog';
 
 const Navigation = () => { 
     return(
@@ -20,7 +21,7 @@ const Navigation = () => {
             </NavUl>       
             <Switch>
                 <Route path="/catalog">
-                    <div>Hello it is catalog</div>
+                    <Catalog/>
                 </Route>
                 <Route path="/card">
                     <div>Hello it is card</div>

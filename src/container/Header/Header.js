@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderOuter, Head, StyledLogo } from './Header.styled';
-import {ReactComponent as LogoMy } from "./../../icons/logo.svg"
+import {ReactComponent as LogoMy } from "./../../icons/header/logo.svg"
 import Navigation from '../Navigation/Navigation';
 
 const Header = () => { 
