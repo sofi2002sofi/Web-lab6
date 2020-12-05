@@ -3,6 +3,7 @@ import { NavList, NavUl, Navigat } from './Navigation.styled';
 import {Switch, BrowserRouter as Router, Route, NavLink} from "react-router-dom";
 import Home from "../Home/Home";
 import Catalog from '../Catalog/Catalog';
+import ItemPage from '../ItemPage/ItemPage';
 
 const Navigation = () => { 
     return(
@@ -13,18 +14,22 @@ const Navigation = () => {
                     <NavLink exact to="/" activeClassName="selected">HOME</NavLink>
                 </NavList>
                 <NavList>
-                    <NavLink exact to="/catalog" activeClassName="selected">CATALOG</NavLink>
+                    <NavLink exect to="/catalog" activeClassName="selected">CATALOG</NavLink>
                 </NavList>
                 <NavList>
-                    <NavLink exact to="/card" activeClassName="selected" >CARD</NavLink>
+                    <NavLink exact to="/cart" activeClassName="selected" >CART</NavLink>
                 </NavList>
             </NavUl>       
             <Switch>
                 <Route path="/catalog">
                     <Catalog/>
                 </Route>
-                <Route path="/card">
+                <Route path="/cart">
                     <div>Hello it is card</div>
+                    {/* <ItemPage/> */}
+                </Route>
+                <Route path="/item">
+                    <ItemPage/>
                 </Route>
                 <Route path="/">
                     <Home/>                

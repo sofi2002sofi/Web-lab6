@@ -122,7 +122,7 @@ export const ApplyBtn = styled.button`
     margin: 10px 80px 0;
 `;
 
-export const SearchForm = styled.form`
+export const SearchForm = styled.div`
     width: 250px;
     display: flex;
     align-items: center;
