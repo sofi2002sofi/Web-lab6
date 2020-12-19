@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CatalogCardItem from '../../components/CatalogCardItem/CatalogCardItem';
-import { CatalogOuter, Input, IconMore, Forms, Cards, SearchBtn, SearchForm, InputSearch, FilterForm, NewFunctions, InputFilterForms, ByPrice, ByHight, FormHead, MinPrice, MaxHight, MaxPrice, MinHight, ApplyBtn } from '../Catalog/Catalog.styled';
+import { CatalogOuter, Input, IconMore, Forms, Cards, SearchBtn, SearchForm, InputSearch, FilterForm, NewFunctions, InputFilterForms, ByPrice, ByHight, FormHead, MinPrice, MaxHight, MaxPrice, MinHight, ApplyBtn, Loader } from '../Catalog/Catalog.styled';
 import pinkShoes from "./../../icons/catalog/pink-boots.png";
 import redShoes from "./../../icons/catalog/red-boots.png";
 import brownShoes from "./../../icons/catalog/brown-boots.png";
@@ -8,87 +8,36 @@ import menBrownShoes from "./../../icons/catalog/men-brown-boots.png";
 import womenGrayShoes from "./../../icons/catalog/women-gray-boots.png";
 import yellowShoes from "./../../icons/catalog/yellow-boots.png";
 import more from "./../../icons/catalog/more-filter.png";
-
-export const data = [
-    {
-        id: 1,
-        shoesPhoto: redShoes,
-        brand: 'KENZO',
-        color: 'red',
-        priceInUAH: 540,
-        hightfShafl: 24.5,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-    {
-        id: 2,
-        shoesPhoto: pinkShoes,
-        brand: 'ECCO',
-        color: 'pink',
-        priceInUAH: 287,
-        hightfShafl: 11,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-    {
-        id: 3,
-        shoesPhoto: brownShoes,
-        brand: 'KENZO',
-        color: 'brown',
-        priceInUAH: 540,
-        hightfShafl: 6.5,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-    {
-        id: 4,
-        shoesPhoto: menBrownShoes,
-        brand: 'ECCO',
-        color: 'brown',
-        priceInUAH: 287,
-        hightfShafl: 6.5,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-    {
-        id: 5,
-        shoesPhoto: womenGrayShoes,
-        brand: 'KENZO',
-        color: 'gray',
-        priceInUAH: 540,
-        hightfShafl: 5.5,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-    {
-        id: 6,
-        shoesPhoto: yellowShoes,
-        brand: 'ECCO',
-        color: 'yellow',
-        priceInUAH: 287,
-        hightfShafl: 5,
-        materialOfVamp: 'leather',
-        toecapType: 'oval'
-    },
-];
+import getAllShoes, {getAllShoesByPriceAndHight} from './GetMethod';
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const Catalog = () => {
     const [checkFiltr, setCheckFilter] = useState(false);
-    const [itemsToShow, setItemsToShow] = useState(data);
     const [title, setTitle] = useState('');
     const [minPrice, setMinPrice] = useState('20');
     const [maxPrice, setMaxPrice] = useState('5000');
     const [minHight, setMinHight] = useState('2');
     const [maxHight, setMaxHight] = useState('27');
+    let [shoesToShow, setShoesToShow] = useState([]);
 
     const search = (input) => {
-        setItemsToShow(itemsToShow.filter((item) => (item.brand.toLowerCase().includes(input) || item.color.toLowerCase().includes(input)) ));
+        setShoesToShow(shoesToShow.filter((item) => (item.brand.toLowerCase().includes(input) || item.color.toLowerCase().includes(input)) ));
     };
 
     const filter = (minPrice, maxPrice, minHight, maxHight) => {
-        setItemsToShow(itemsToShow.filter((item) => ((item.priceInUAH >= parseInt(minPrice)) && (item.priceInUAH <= parseInt(maxPrice)) && (item.hightfShafl >= parseInt(minHight)) && (item.hightfShafl <= (maxHight))) ));
+        getAllShoesByPriceAndHight(minPrice, maxPrice, minHight, maxHight).then( (e) => {
+            setShoesToShow(e);
+        });
     }
 
+    useEffect( () => {
+        if (shoesToShow.length === 0){
+            getAllShoes().then( (e) => {
+                setShoesToShow(e);
+            });
+        }
+    });
+    
     return(
         <CatalogOuter>
             <Forms>
@@ -125,21 +74,25 @@ const Catalog = () => {
                     <SearchBtn onClick={() => search(title)}></SearchBtn>
                 </SearchForm>
             </Forms>
-            <Cards>
-                {itemsToShow.map(({shoesPhoto, brand, color, priceInUAH, hightfShafl, materialOfVamp, toecapType, id}, idx) => (
+            {shoesToShow.length!==0 ? (
+                <Cards>
+                {shoesToShow.map((item, idx) => (
                     <CatalogCardItem
-                        shoesPhoto={shoesPhoto}
-                        brand={brand}
-                        color={color}
-                        priceInUAH={priceInUAH}
-                        hightfShafl={hightfShafl}
-                        materialOfVamp={materialOfVamp}
-                        toecapType={toecapType}
-                        id={id}
+                        shoesPhoto={brownShoes}
+                        brand={item.brand}
+                        color={item.color}
+                        priceInUAH={item.priceInUAH}
+                        hightfShaftlnSM={item.hightfShaftlnSM}
+                        materialOfVamp={item.materialOfVamp}
+                        toecapType={item.toecapType}
+                        id={item.id}
                         key={idx}
                     />
                 ))}
             </Cards>
+            ) : (<Loader>
+                <ScaleLoader color={"#218378"}/>
+            </Loader>)}
         </CatalogOuter>
     );
 };

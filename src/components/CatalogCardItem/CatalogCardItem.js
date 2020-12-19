@@ -2,7 +2,7 @@ import React from 'react';
 import {CardContainer, BootsPhoto, CardInfo, CardTitle, CardDescription, Price, ShopNowBtn} from './CatalogCardItem.styled';
 import {useHistory} from 'react-router-dom';
 
-const CatalogCardItem = ({shoesPhoto, brand, color, hightfShafl, priceInUAH, materialOfVamp, toecapType, id}) => {
+const CatalogCardItem = ({shoesPhoto, brand, color, hightfShaftlnSM, priceInUAH, materialOfVamp, toecapType, id}) => {
     let history = useHistory();
 
     const goToItem = () => {
@@ -14,7 +14,7 @@ const CatalogCardItem = ({shoesPhoto, brand, color, hightfShafl, priceInUAH, mat
             <BootsPhoto src={shoesPhoto}/>
             <CardInfo>
                 <CardTitle>Boots</CardTitle>
-                <CardDescription> {brand} {color} boots, with hight of shafl {hightfShafl}. </CardDescription>
+                <CardDescription> {brand} {color} boots, with hight of shafl {hightfShaftlnSM}. </CardDescription>
                 <Price>$ {priceInUAH}</Price>
                 <ShopNowBtn onClick={goToItem}>Shop now</ShopNowBtn>
             </CardInfo>

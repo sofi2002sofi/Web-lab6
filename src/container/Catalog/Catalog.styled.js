@@ -149,3 +149,7 @@ export const SearchBtn = styled.button`
     border: none;
     cursor: pointer;
 `;
+
+export const Loader = styled.div`
+    margin: 20px 650px;
+`;

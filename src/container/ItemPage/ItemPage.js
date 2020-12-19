@@ -3,7 +3,10 @@ import leather from "./../../icons/item-page/leather.png"
 import toecap from "./../../icons/item-page/toecap.png"
 import {ItemOuter, Item, BootsPhoto, Photo, VisitedPage, Line, VisitedInfo, BootsInfo, ItemHeader, ItemTitle, VampMaterial, VampIcon, ToecapType, ToecapIcon, ItemDescription, SizeSelect, SizeForm, LabelForSize, BuyBlock, BootsPrice, GoBachBtn, AddToCartBtn} from "./ItemPage.styled"
 import { useLocation, useHistory } from 'react-router-dom';
-import { data } from '../Catalog/Catalog';
+import brownShoes from "./../../icons/catalog/brown-boots.png";
+import {getShoesById} from '../Catalog/GetMethod';
+import { useDispatch } from "react-redux";
+import { addItem } from "../ReduxMethods/action";
 
 const options = [
     {
@@ -44,19 +47,23 @@ const options = [
     },
     ];
 
-var num = 0;
+let num = 0;
 
 const ItemPage = () => {
     let history = useHistory();
     const location = useLocation();
     const [itm, setItm] = useState({});
     const [count, setCount] = useState(num);
-    
+    const [shoesToShow, setShoesToShow] = useState([]);
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const id = parseInt(location.search.split("=")[1]);
-        const elem = data.find((item) => item.id===id);
-        console.log(elem);
-        setItm(elem);
+        if (shoesToShow.length === 0){
+            getShoesById(id).then( (e) => {
+                setItm(e);
+            });
+        }
         setCount(count + 1);
     },[location]);
 
@@ -64,19 +71,19 @@ const ItemPage = () => {
         history.push(`/catalog`);
     }
     
+    const addItemToCart = () => {
+        dispatch( addItem({
+            id: itm.id,
+            priceInUAH: itm.priceInUAH,
+            number: 1,
+        }));
+    };
+
     return(
         <ItemOuter>
-                    <Item
-                        shoesPhoto={itm.shoesPhoto}
-                        brand={itm.brand}
-                        color={itm.color}
-                        priceInUAH={itm.priceInUAH}
-                        hightfShafl={itm.hightfShafl}
-                        materialOfVamp={itm.materialOfVamp}
-                        toecapType={itm.toecapType}
-                        id={itm.id}>
+                    <Item>
                             <BootsPhoto>
-                                <Photo src={itm.shoesPhoto}></Photo>
+                                <Photo src={brownShoes}></Photo>
                                 <VisitedPage><Line/><VisitedInfo>This pair has been already looked for <h5>{count}</h5> times</VisitedInfo><Line/></VisitedPage>
                             </BootsPhoto>
                             <BootsInfo>
@@ -85,7 +92,7 @@ const ItemPage = () => {
                                     <VampMaterial> <VampIcon src={leather}/> {itm.materialOfVamp} </VampMaterial>
                                     <ToecapType> <ToecapIcon src={toecap}/> {itm.toecapType} </ToecapType>
                                 </ItemHeader>
-                                <ItemDescription> {itm.brand} {itm.color} boots, with hight of shafl {itm.hightfShafl}. </ItemDescription>
+                                <ItemDescription> {itm.brand} {itm.color} boots, with hight of shafl {itm.hightfShaftlnSM}. </ItemDescription>
                                 <SizeForm>
                                     <SizeSelect id="sizeEURstandart_input">
                                         {options.map((option) => (
@@ -97,7 +104,7 @@ const ItemPage = () => {
                                 <BuyBlock>
                                     <BootsPrice> ${itm.priceInUAH} </BootsPrice>
                                     <GoBachBtn onClick={goBack}>Go back</GoBachBtn>
-                                    <AddToCartBtn>Add to cart</AddToCartBtn>
+                                    <AddToCartBtn onClick={addItemToCart}>Add to cart</AddToCartBtn>
                                 </BuyBlock>
                             </BootsInfo>
                     </Item>

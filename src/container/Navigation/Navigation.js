@@ -4,6 +4,7 @@ import {Switch, BrowserRouter as Router, Route, NavLink} from "react-router-dom"
 import Home from "../Home/Home";
 import Catalog from '../Catalog/Catalog';
 import ItemPage from '../ItemPage/ItemPage';
+import Cart from '../Cart/Cart';
 
 const Navigation = () => { 
     return(
@@ -25,8 +26,7 @@ const Navigation = () => {
                     <Catalog/>
                 </Route>
                 <Route path="/cart">
-                    <div>Hello it is card</div>
-                    {/* <ItemPage/> */}
+                    <Cart/>
                 </Route>
                 <Route path="/item">
                     <ItemPage/>
