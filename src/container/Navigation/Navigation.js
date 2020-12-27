@@ -5,7 +5,8 @@ import Home from "../Home/Home";
 import Catalog from '../Catalog/Catalog';
 import ItemPage from '../ItemPage/ItemPage';
 import Cart from '../Cart/Cart';
-
+import Checkout from '../Checkout/Checkout';
+import Success from '../Success/Success';
 const Navigation = () => { 
     return(
     <Router>
@@ -27,6 +28,12 @@ const Navigation = () => {
                 </Route>
                 <Route path="/cart">
                     <Cart/>
+                </Route>
+                <Route path="/checkout">
+                    <Checkout/>
+                </Route>
+                <Route path="/success">
+                    <Success/>
                 </Route>
                 <Route path="/item">
                     <ItemPage/>

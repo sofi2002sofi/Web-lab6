@@ -12,6 +12,10 @@ const Cart = () => {
         history.push(`/catalog`);
     }
 
+    const goToCheckout = () => {
+        history.push(`/checkout`);
+    }
+
     return(
         <CartOuter>
             <ShoppingCartTitle>Shopping cart</ShoppingCartTitle>
@@ -27,7 +31,7 @@ const Cart = () => {
                 </TotalAmount>
                 <CartButtons>
                     <BackToCatalogBtn onClick={goBack}>Back to catalog</BackToCatalogBtn>
-                    <ContinueBtn>Continue</ContinueBtn>
+                    <ContinueBtn onClick={goToCheckout}>Continue</ContinueBtn>
                 </CartButtons>
             </Buy>
         </CartOuter>
