@@ -46,7 +46,7 @@ const schema = yup.object().shape({
     .required('Age is required'),
     phoneNumber: yup.string()
     .matches(
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i,
         "Invalid phone number"
     )
     .required("Phone number is required"),
@@ -79,21 +79,21 @@ const Checkout = () => {
                 validationSchema = {schema}
                 onSubmit={succ}
                 >
-                {({ isSubmitting, handleSubmit}) => (
+                {({ handleSubmit}) => (
                         <FormChecking onSubmit={handleSubmit}>
                             <div>
                                 <label>First Name</label>
-                                <FieldInput type="firstName" name="firstName" />
+                                <FieldInput type="text" name="firstName" />
                                 <StyledErrorMessage name="firstName" component="div" />
                             </div>
                             <div>
                                 <label>Last Name</label>
-                                <FieldInput type="lastName" name="lastName" />
+                                <FieldInput type="text" name="lastName" />
                                 <StyledErrorMessage name="lastName" component="div" />
                             </div>
                             <div>
                                 <label>Age</label>
-                                <FieldInput type="age" name="age" />
+                                <FieldInput type="number" name="age" />
                                 <StyledErrorMessage name="age" component="div" />
                             </div>
                             <div>
@@ -103,12 +103,12 @@ const Checkout = () => {
                             </div>
                             <div>
                                 <label>Phone number</label>
-                                <FieldInput type="phoneNumber" name="phoneNumber" />
+                                <FieldInput type="text" name="phoneNumber" />
                                 <StyledErrorMessage name="phoneNumber" component="div" />
                             </div>
                             <div>
                                 <label>City</label>
-                                <SelectCity type="city" name="city" >
+                                <SelectCity type="text" name="city" >
                                     {options.map((option) => (
                                             <option value={option.value}>{option.label}</option>
                                     ))}
@@ -117,7 +117,7 @@ const Checkout = () => {
                             </div>
                             <Buttons>
                                 <GoBachBtn onClick={goBack}>Go Back</GoBachBtn>
-                                <ContinueButton type="submit" disabled={isSubmitting} onSubmit={handleSubmit}>Continue</ContinueButton>
+                                <ContinueButton type="submit" onSubmit={handleSubmit}>Continue</ContinueButton>
                             </Buttons>
                         </FormChecking>
                     )}

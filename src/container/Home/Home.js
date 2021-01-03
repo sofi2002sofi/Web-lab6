@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Advertisment, AdvertismentTitle, AdvertismentText, ShowMoreBtn, MostPopular, MostPopularTitle, Cards, HomePage, ViewMoreBtn} from './Home.styled'
+import {Advertisment, AdvertismentTitle, AdvertismentText, ShowMoreBtn, MostPopular, MostPopularTitle, Cards, HomePage, ViewMoreBtn, LogoutBtn} from './Home.styled'
 import {ReactComponent as Line } from "./../../icons/most-popular/line.svg";
 import redShoes from "./../../icons/most-popular/cards/redShoes.png";
 import pinkShoes from "./../../icons/most-popular/cards/pinkShoes.png";
 import CardItem from './../../components/CardItem/CardsItem'
+import { withRouter } from 'react-router-dom';
 
 const data = [
     {
@@ -50,7 +51,7 @@ const data = [
     },
 ];
 
-const Home = () => { 
+const Home = ({logout}) => { 
     const [itemsToShow, setItemsToShow] = useState(data.slice(0, 2));
     const [isViewMore, setIsViewMore] = useState(false);
 
@@ -90,6 +91,7 @@ const Home = () => {
                 </Cards>
                 {!isViewMore && (<ViewMoreBtn onClick={() => showMore()}>View more</ViewMoreBtn>)}
                 {isViewMore && (<ViewMoreBtn onClick={() => showLess()}>View less</ViewMoreBtn>)}
+                <LogoutBtn onClick={logout}>Log out</LogoutBtn>
             </MostPopular>
         </HomePage>);
 };

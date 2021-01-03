@@ -19,6 +19,7 @@ export const AdvertismentTitle = styled.h1`
     padding-top: 100px;
     width: 410px;
     font-size: 48px;
+    color: #FFF;
 `;
 
 export const AdvertismentText = styled.p`
@@ -89,11 +90,29 @@ export const ViewMoreBtn = styled.button`
         box-shadow: 5px 4px 30px rgba(33, 131, 120, 0.3);
     }
     
-    margin: 20px 600px;
+    margin: 20px 601px;
     background: #218378;
     padding: 12px 26px;
     border-radius: 16px;
     border: none;
     color: #FFFFFF;
+    font-size: 20px;
+`;
+
+export const LogoutBtn = styled.button`
+    :hover, :focus, :active{
+        cursor: pointer;
+        transform: scale(1.05);
+        box-shadow: 5px 4px 30px rgba(33, 131, 120, 0.3);
+        background: #218378;
+        color: #FFF;
+    }
+    margin: 20px 604px;
+    background: #FFF;
+    padding: 3px 32px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    border-color: #218378;
+    color: #218378;
     font-size: 20px;
 `;
